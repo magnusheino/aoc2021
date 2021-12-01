@@ -1,17 +1,21 @@
 fun main() {
+    fun solvePuzzle(input: String, solver: (List<String>) -> Int, expectedResult: Int) {
+        val result = solver(readInput(input))
+        println("$input resolved with $solver is $result")
+        check(result === expectedResult)
+    }
+
     fun part1(input: List<String>): Int {
-        return input.size
+        return input.map { it.toInt() }.zipWithNext().count { (prev, next) -> next > prev }
     }
 
     fun part2(input: List<String>): Int {
-        return input.size
+        return input.map { it.toInt() }.windowed(3) { it.sum() }.zipWithNext().count { (prev, next) -> next > prev }
     }
 
-    // test if implementation meets criteria from the description, like:
-    val testInput = readInput("Day01_test")
-    check(part1(testInput) == 1)
+    solvePuzzle("Day01_test", ::part1, 7)
+    solvePuzzle("Day01", ::part1, 1616)
 
-    val input = readInput("Day01")
-    println(part1(input))
-    println(part2(input))
+    solvePuzzle("Day01_test", ::part2, 5)
+    solvePuzzle("Day01", ::part2, 1645)
 }
