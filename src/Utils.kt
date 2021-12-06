@@ -2,6 +2,11 @@ import java.io.File
 import java.math.BigInteger
 import java.security.MessageDigest
 
+infix fun Int.toward(to: Int): IntProgression {
+    val step = if (this > to) -1 else 1
+    return IntProgression.fromClosedRange(this, to, step)
+}
+
 /**
  * Reads lines from the given input txt file.
  */
@@ -16,19 +21,4 @@ fun solvePuzzle(input: String, solver: (List<String>) -> Int, expectedResult: In
     val result = solver(readInput(input))
     println("$input resolved with $solver is $result")
     check(result === expectedResult)
-}
-
-fun convertBinaryToDecimal(num: Long): Int {
-    var num = num
-    var decimalNumber = 0
-    var i = 0
-    var remainder: Long
-
-    while (num.toInt() != 0) {
-        remainder = num % 10
-        num /= 10
-        decimalNumber += (remainder * Math.pow(2.0, i.toDouble())).toInt()
-        ++i
-    }
-    return decimalNumber
 }

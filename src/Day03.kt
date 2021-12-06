@@ -5,9 +5,8 @@ fun main() {
             gammaRateBinary += input.map { it[index] }.groupBy { it }.maxByOrNull { it.value.size }?.key
         }
 
-        val gammaRate = convertBinaryToDecimal(gammaRateBinary.toLong())
-        val epsilonRate =
-            convertBinaryToDecimal(gammaRateBinary.map { if (it === '0') '1' else '0' }.joinToString("").toLong())
+        val gammaRate = gammaRateBinary.toInt(2)
+        val epsilonRate = gammaRateBinary.map { if (it === '0') '1' else '0' }.joinToString("").toInt(2)
 
         return gammaRate * epsilonRate
     }
@@ -26,7 +25,7 @@ fun main() {
                     candidate[index] === if (least?.size ?: 0 === most?.size ?: 0) defaultIfEqual else if (defaultIfEqual === '1') most?.first() else least?.first()
                 }.toMutableList()
                 if (candidates.size === 1) {
-                    return convertBinaryToDecimal(candidates.first().toLong())
+                    return candidates.first().toInt(2)
                 }
             }
             throw IllegalStateException("Failed to calculate rating")
