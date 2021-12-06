@@ -17,8 +17,8 @@ fun readInput(name: String) = File("src", "$name.txt").readLines()
  */
 fun String.md5(): String = BigInteger(1, MessageDigest.getInstance("MD5").digest(toByteArray())).toString(16)
 
-fun solvePuzzle(input: String, solver: (List<String>) -> Int, expectedResult: Int) {
+fun solvePuzzle(input: String, solver: (List<String>) -> Number, expectedResult: Number) {
     val result = solver(readInput(input))
     println("$input resolved with $solver is $result")
-    check(result === expectedResult)
+    check(result == expectedResult)
 }
