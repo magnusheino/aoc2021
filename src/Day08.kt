@@ -1,7 +1,4 @@
 fun main() {
-
-    fun String.alphabetized() = String(toCharArray().apply { sort() })
-
     data class Entry(val signalPattern: List<String>, val outputValues: List<String>) {
 
         fun decodeOutputValue(): Int {

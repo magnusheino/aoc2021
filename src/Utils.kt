@@ -22,3 +22,6 @@ fun solvePuzzle(input: String, solver: (List<String>) -> Number, expectedResult:
     println("$input resolved with $solver is $result")
     check(result == expectedResult)
 }
+
+fun String.alphabetized() = String(toCharArray().apply { sort() })
+
