@@ -1,4 +1,7 @@
 fun main() {
+
+
+
     data class Entry(val signalPattern: List<String>, val outputValues: List<String>) {
 
         fun decodeOutputValue(): Int {
